@@ -1,0 +1,489 @@
+[gd_scene format=3 uid="uid://bbwefipmom5u5"]
+
+[ext_resource type="PackedScene" uid="uid://df618g85jasgn" path="res://raquette.tscn" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bmsrquixklm45" path="res://LEVEL.gd" id="1_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://cgomrdrr5aatg" path="res://balle.tscn" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://cony0jii4lc5o" path="res://brique.tscn" id="3_a0tk4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
+sky_top_color = Color(0.4248112, 0.49797487, 0.59555954, 1)
+sky_horizon_color = Color(0.7690357, 0.7776816, 0.7912309, 1)
+ground_bottom_color = Color(0.26116583, 0.22258589, 0.17919844, 1)
+ground_horizon_color = Color(0.7690357, 0.7776816, 0.7912309, 1)
+energy_multiplier = 1.35
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("ProceduralSkyMaterial_a202f")
+
+[sub_resource type="Environment" id="Environment_a0tk4"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ot1bx"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqjx"]
+albedo_color = Color(0.78431374, 1, 1, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5iqjx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bx8n8"]
+size = Vector3(100, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
+size = Vector3(100, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5iqjx"]
+size = Vector3(50, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5iqjx"]
+size = Vector3(100, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jx8tp"]
+size = Vector3(50, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx8tp"]
+size = Vector3(50, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5h11f"]
+size = Vector3(100, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bx8n8"]
+size = Vector3(100, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5h11f"]
+font_size = 30
+font_color = Color(1, 0.47000003, 0.47000003, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5iqjx"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0.9019608, 0.6156863, 0.8352941, 0.72156864)
+shadow_color = Color(0.525894, 0.52589405, 0.525894, 0)
+
+[node name="level" type="Node3D" unique_id=234490756]
+script = ExtResource("1_r3fl7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=788464875]
+transform = Transform3D(0.69716525, 0.7137288, -0.06746723, 0, 0.094108306, 0.99556196, 0.7169105, -0.6940712, 0.06560904, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=251829008]
+environment = SubResource("Environment_a0tk4")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1225846188]
+cell_size = Vector3(3, 1, 0.5)
+
+[node name="Camera3D3" type="Camera3D" parent="." unique_id=364302710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 5, 30)
+projection = 1
+current = true
+fov = 106.2
+size = 30.0
+far = 3993.45
+
+[node name="raquette" parent="." unique_id=603606558 instance=ExtResource("1_a202f")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -7, 0)
+
+[node name="balle" parent="." unique_id=353528024 instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.2, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_ot1bx")
+
+[node name="CompteARebours" type="Label" parent="." unique_id=1251012648]
+offset_left = 414.0
+offset_top = 272.0
+offset_right = 756.0
+offset_bottom = 352.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "ESPACE POUR LANCER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=568805364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5999994)
+use_collision = true
+size = Vector3(200, 200, 0.5)
+material = SubResource("StandardMaterial3D_5iqjx")
+
+[node name="briques" type="Node3D" parent="." unique_id=759690634 groups=["briques"]]
+
+[node name="brick" parent="briques" unique_id=1842698023 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.961609, 15.772354, 0)
+
+[node name="brick2" parent="briques" unique_id=2141575002 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.026566, 15.772354, 0)
+
+[node name="brick3" parent="briques" unique_id=1635744140 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.210907, 15.772354, 0)
+
+[node name="brick4" parent="briques" unique_id=44381978 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.335449, 15.772354, 0)
+
+[node name="brick5" parent="briques" unique_id=1995523468 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459808, 15.772354, 0)
+
+[node name="brick6" parent="briques" unique_id=158994798 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703964, 15.772354, 0)
+
+[node name="brick7" parent="briques" unique_id=554520763 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8281097, 15.772354, 0)
+
+[node name="brick8" parent="briques" unique_id=1365560459 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07218933, 15.772354, 0)
+
+[node name="brick9" parent="briques" unique_id=2047100871 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802826, 15.772354, 0)
+
+[node name="brick10" parent="briques" unique_id=1367383488 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6786957, 15.772354, 0)
+
+[node name="brick11" parent="briques" unique_id=1626895884 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.434296, 15.772354, 0)
+
+[node name="brick12" parent="briques" unique_id=1637474998 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.130341, 15.772354, 0)
+
+[node name="brick13" parent="briques" unique_id=1170655709 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.88649, 15.772354, 0)
+
+[node name="brick14" parent="briques" unique_id=1540722187 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5822, 15.772354, 0)
+
+[node name="brick15" parent="briques" unique_id=409680773 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.218521, 15.772354, 0)
+
+[node name="brick16" parent="briques" unique_id=1740970930 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.914001, 15.772354, 0)
+
+[node name="brick17" parent="briques" unique_id=613135857 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.969482, 15.772354, 0)
+
+[node name="brick18" parent="briques" unique_id=1319963802 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.961609, 14.103844, 0)
+
+[node name="brick19" parent="briques" unique_id=397144053 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.026566, 14.103844, 0)
+
+[node name="brick20" parent="briques" unique_id=2092382013 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.210907, 14.103844, 0)
+
+[node name="brick21" parent="briques" unique_id=4862324 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.335449, 14.103844, 0)
+
+[node name="brick22" parent="briques" unique_id=1699445518 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459808, 14.103844, 0)
+
+[node name="brick23" parent="briques" unique_id=1919698311 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703964, 14.103844, 0)
+
+[node name="brick24" parent="briques" unique_id=1452620585 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8281097, 14.103844, 0)
+
+[node name="brick25" parent="briques" unique_id=292478301 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07218933, 14.103844, 0)
+
+[node name="brick26" parent="briques" unique_id=1696412458 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802826, 14.103844, 0)
+
+[node name="brick27" parent="briques" unique_id=101956544 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6786957, 14.103844, 0)
+
+[node name="brick28" parent="briques" unique_id=1858549720 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.434296, 14.103844, 0)
+
+[node name="brick29" parent="briques" unique_id=1456804485 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.130341, 14.103844, 0)
+
+[node name="brick30" parent="briques" unique_id=351800122 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.88649, 14.103844, 0)
+
+[node name="brick31" parent="briques" unique_id=1894187299 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5822, 14.103844, 0)
+
+[node name="brick32" parent="briques" unique_id=1871292828 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.218521, 14.103844, 0)
+
+[node name="brick33" parent="briques" unique_id=575688171 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.914001, 14.103844, 0)
+
+[node name="brick34" parent="briques" unique_id=241006544 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.969482, 14.103844, 0)
+
+[node name="brick35" parent="briques" unique_id=2016088448 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.961609, 12.673695, 0)
+
+[node name="brick36" parent="briques" unique_id=2027773433 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.026566, 12.673695, 0)
+
+[node name="brick37" parent="briques" unique_id=720626891 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.210907, 12.673695, 0)
+
+[node name="brick38" parent="briques" unique_id=402341073 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.335449, 12.673695, 0)
+
+[node name="brick39" parent="briques" unique_id=1126350720 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459808, 12.673695, 0)
+
+[node name="brick40" parent="briques" unique_id=427104997 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703964, 12.673695, 0)
+
+[node name="brick41" parent="briques" unique_id=817454544 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8281097, 12.673695, 0)
+
+[node name="brick42" parent="briques" unique_id=1539345471 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07218933, 12.673695, 0)
+
+[node name="brick43" parent="briques" unique_id=1823718081 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802826, 12.673695, 0)
+
+[node name="brick44" parent="briques" unique_id=1937063397 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6786957, 12.673695, 0)
+
+[node name="brick45" parent="briques" unique_id=1580425257 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.434296, 12.673695, 0)
+
+[node name="brick46" parent="briques" unique_id=1581579260 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.130341, 12.673695, 0)
+
+[node name="brick47" parent="briques" unique_id=1776588918 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.88649, 12.673695, 0)
+
+[node name="brick48" parent="briques" unique_id=525410594 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5822, 12.673695, 0)
+
+[node name="brick49" parent="briques" unique_id=1024715672 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.218521, 12.673695, 0)
+
+[node name="brick50" parent="briques" unique_id=1795689068 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.914001, 12.673695, 0)
+
+[node name="brick51" parent="briques" unique_id=1043600323 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.969482, 12.673695, 0)
+
+[node name="brick52" parent="briques" unique_id=1916311701 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.961609, 11.303131, 0)
+
+[node name="brick53" parent="briques" unique_id=2111803566 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.026566, 11.303131, 0)
+
+[node name="brick54" parent="briques" unique_id=170887122 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.210907, 11.303131, 0)
+
+[node name="brick55" parent="briques" unique_id=221226158 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.335449, 11.303131, 0)
+
+[node name="brick56" parent="briques" unique_id=1004303687 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459808, 11.303131, 0)
+
+[node name="brick57" parent="briques" unique_id=1305834135 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703964, 11.303131, 0)
+
+[node name="brick58" parent="briques" unique_id=143931308 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8281097, 11.303131, 0)
+
+[node name="brick59" parent="briques" unique_id=1107894461 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07218933, 11.303131, 0)
+
+[node name="brick60" parent="briques" unique_id=1604469128 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802826, 11.303131, 0)
+
+[node name="brick61" parent="briques" unique_id=1782968773 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6786957, 11.303131, 0)
+
+[node name="brick62" parent="briques" unique_id=528931284 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.434296, 11.303131, 0)
+
+[node name="brick63" parent="briques" unique_id=273838366 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.130341, 11.303131, 0)
+
+[node name="brick64" parent="briques" unique_id=2091232649 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.88649, 11.303131, 0)
+
+[node name="brick65" parent="briques" unique_id=1889251011 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5822, 11.303131, 0)
+
+[node name="brick66" parent="briques" unique_id=1750772990 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.218521, 11.303131, 0)
+
+[node name="brick67" parent="briques" unique_id=284178701 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.914001, 11.303131, 0)
+
+[node name="brick68" parent="briques" unique_id=407173813 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.969482, 11.303131, 0)
+
+[node name="brick69" parent="briques" unique_id=1254072934 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.961609, 10.05175, 0)
+
+[node name="brick70" parent="briques" unique_id=423768325 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.026566, 10.05175, 0)
+
+[node name="brick71" parent="briques" unique_id=1903779151 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.210907, 10.05175, 0)
+
+[node name="brick72" parent="briques" unique_id=2114135059 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.335449, 10.05175, 0)
+
+[node name="brick73" parent="briques" unique_id=628094395 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.459808, 10.05175, 0)
+
+[node name="brick74" parent="briques" unique_id=2145340951 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.703964, 10.05175, 0)
+
+[node name="brick75" parent="briques" unique_id=325037953 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8281097, 10.05175, 0)
+
+[node name="brick76" parent="briques" unique_id=1885242741 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07218933, 10.05175, 0)
+
+[node name="brick77" parent="briques" unique_id=1892999243 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.802826, 10.05175, 0)
+
+[node name="brick78" parent="briques" unique_id=740525052 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6786957, 10.05175, 0)
+
+[node name="brick79" parent="briques" unique_id=236620443 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.434296, 10.05175, 0)
+
+[node name="brick80" parent="briques" unique_id=1622506312 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.130341, 10.05175, 0)
+
+[node name="brick81" parent="briques" unique_id=2100380574 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.88649, 10.05175, 0)
+
+[node name="brick82" parent="briques" unique_id=1050252117 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5822, 10.05175, 0)
+
+[node name="brick83" parent="briques" unique_id=2127437426 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.218521, 10.05175, 0)
+
+[node name="brick84" parent="briques" unique_id=805487265 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.914001, 10.05175, 0)
+
+[node name="brick85" parent="briques" unique_id=1952280121 groups=["briques"] instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.969482, 10.05175, 0)
+
+[node name="murs" type="Node3D" parent="." unique_id=958813454]
+
+[node name="mur" type="StaticBody3D" parent="murs" unique_id=1172739095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+physics_material_override = SubResource("PhysicsMaterial_5iqjx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="murs/mur" unique_id=1357666308]
+mesh = SubResource("BoxMesh_bx8n8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="murs/mur" unique_id=1728378534]
+shape = SubResource("BoxShape3D_5h11f")
+
+[node name="mur2" type="StaticBody3D" parent="murs" unique_id=463289064]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -24.2, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_5iqjx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="murs/mur2" unique_id=407800461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+mesh = SubResource("BoxMesh_5iqjx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="murs/mur2" unique_id=1837770578]
+shape = SubResource("BoxShape3D_5iqjx")
+
+[node name="mur3" type="StaticBody3D" parent="murs" unique_id=1058313323]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 29.2, 5, 0)
+physics_material_override = SubResource("PhysicsMaterial_5iqjx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="murs/mur3" unique_id=853590520]
+mesh = SubResource("BoxMesh_jx8tp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="murs/mur3" unique_id=1873995503]
+shape = SubResource("BoxShape3D_jx8tp")
+
+[node name="mur4" type="StaticBody3D" parent="murs" unique_id=693332672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -13, 0)
+physics_material_override = SubResource("PhysicsMaterial_5iqjx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="murs/mur4" unique_id=2029030736]
+mesh = SubResource("BoxMesh_5h11f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="murs/mur4" unique_id=763635125]
+shape = SubResource("BoxShape3D_bx8n8")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1007036734]
+
+[node name="vies" type="Label" parent="UI" unique_id=26695111]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 118.0
+offset_bottom = 56.0
+text = "VIES : 3"
+label_settings = SubResource("LabelSettings_5h11f")
+
+[node name="ecranGameOver" type="ColorRect" parent="UI" unique_id=603975390]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15794292, 0.21865067, 0.27828422, 1)
+
+[node name="GameOverLabel" type="Label" parent="UI/ecranGameOver" unique_id=1752611612]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.34253
+offset_top = -33.5
+offset_right = 210.34253
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_5iqjx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuAcceuil" type="Control" parent="UI" unique_id=1466639827]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fondMenu" type="ColorRect" parent="UI/MenuAcceuil" unique_id=1810434242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2680352, 0.11631947, 0.48500484, 1)
+
+[node name="ButtonJouer" type="Button" parent="UI/MenuAcceuil" unique_id=153790387]
+custom_minimum_size = Vector2(250, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -40.0
+offset_right = 125.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "JOUER"

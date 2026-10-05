@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://df618g85jasgn"]
+
+[ext_resource type="Script" uid="uid://y05h2oce811u" path="res://raquette.gd" id="1_it7ot"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5h11f"]
+size = Vector3(3, 0.7, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
+size = Vector3(3, 1, 0.5)
+
+[node name="raquette" type="AnimatableBody3D" unique_id=603606558]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_it7ot")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1821769067]
+mesh = SubResource("BoxMesh_5h11f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908362548]
+shape = SubResource("BoxShape3D_5h11f")

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cony0jii4lc5o"]
+
+[ext_resource type="Texture2D" uid="uid://bg5sarbxp8fgk" path="res://text_briq.jpeg" id="2_0tlye"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfoy8"]
+albedo_texture = ExtResource("2_0tlye")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5h11f"]
+material = SubResource("StandardMaterial3D_mfoy8")
+size = Vector3(2.5, 0.8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5h11f"]
+size = Vector3(2.5, 0.8, 0.5)
+
+[node name="brick" type="StaticBody3D" unique_id=1842698023]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582855956]
+mesh = SubResource("BoxMesh_5h11f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=59486992]
+shape = SubResource("BoxShape3D_5h11f")

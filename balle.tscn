@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cgomrdrr5aatg"]
+
+[ext_resource type="Script" uid="uid://cg64oc2eorqrr" path="res://balle.gd" id="1_jfmq7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o5tfm"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bx8n8"]
+albedo_color = Color(0.26666668, 0.67058825, 0.85882354, 0.75686276)
+metallic = 0.71
+metallic_specular = 0.57
+
+[sub_resource type="SphereMesh" id="SphereMesh_5h11f"]
+material = SubResource("StandardMaterial3D_bx8n8")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5iqjx"]
+
+[node name="balle" type="RigidBody3D" unique_id=353528024]
+physics_material_override = SubResource("PhysicsMaterial_o5tfm")
+gravity_scale = 0.0
+script = ExtResource("1_jfmq7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1778983649]
+mesh = SubResource("SphereMesh_5h11f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2028304722]
+shape = SubResource("SphereShape3D_5iqjx")
